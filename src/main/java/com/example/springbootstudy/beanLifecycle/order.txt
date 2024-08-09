@@ -1,0 +1,33 @@
+调用 BeanFactoryPostProcessor.postProcessBeanFactory 方法
+
+// 实例化
+
+1 - 调用 InstantiationAwareBeanPostProcessor.postProcessBeforeInstantiation 方法
+2 - 调用构造函数
+3 - 调用 InstantiationAwareBeanPostProcessor.postProcessAfterInstantiation 方法
+4 - 调用 InstantiationAwareBeanPostProcessor.postProcessProperties 方法
+
+// 属性赋值
+
+5 - 调用 BeanNameAware.setBeanName() 方法
+6 - 调用 ApplicationContextAware.setApplicationContext() 方法
+7 - 调用 BeanPostProcessor.postProcessBeforeInitialization 方法
+8 - 调用 InitializingBean.afterPropertiesSet() 方法
+
+// 初始化
+
+9 - 调用 BeanPostProcessor.postProcessAfterInitialization 方法
+
+2. 调用构造函数
+10 - 属性注入 id
+调用 BeanNameAware.setBeanName() 方法
+调用 BeanNameAware.setBeanName() 方法
+
+调用 ApplicationContextAware.setApplicationContext() 方法
+11 - 调用 InitializingBean.afterPropertiesSet() 方法
+12 - 调用 init-method 方法
+
+// 销毁
+
+13 - 调用 DisposableBean.destroy() 方法
+14 - 调用 destroy-method 方法

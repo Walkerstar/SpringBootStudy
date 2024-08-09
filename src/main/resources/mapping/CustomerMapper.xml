@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisstudy.mapper.CustomerMapper">
+
+    <resultMap id="baseMap" type="com.example.mybatisstudy.entity.Customer">
+        <id column="id" property="id"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+    </resultMap>
+
+    <insert id="addCustomer">
+        insert into customer(phone,address) values (#{phone},#{address})
+    </insert>
+
+    <select id="findCustomer" resultMap="baseMap">
+        select * from customer where phone = #{phone}
+    </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mybatisstudy.mapper.RoleMapper">
+
+    <resultMap id="baseMap" type="com.example.mybatisstudy.entity.Role">
+        <result column="seq_no" jdbcType="INTEGER" property="seqNo"/>
+        <result column="role_desc" jdbcType="VARCHAR" property="roleDesc"/>
+        <result column="role_id" jdbcType="VARCHAR" property="roleId"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+    </resultMap>
+
+    <select id="queryRoleByNam" resultMap="baseMap">
+        select seq_no,role_desc,role_id,role_name
+        from sys_role
+        where role_name = #{roleName}
+    </select>
+</mapper>

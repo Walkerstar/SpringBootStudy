@@ -1,0 +1,14 @@
+如何在线程池中传递ThreadLocal的值？
+
+
+线程A 调用 TestA.test() 方法后，不会打印出 localStr 的值。
+原因是：
+线程池中执行的是工作线程，不是线程A，所以看不到线程A设置的 ThreadLocal 变量值。
+
+
+为了解决这个问题？
+1. 定义 公共内存的存储结构
+2. 定义 公共内存在线程间的传递
+
+
+参考 阿里 TransmittableThreadLocal 实现。

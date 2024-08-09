@@ -1,0 +1,92 @@
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationStartingEvent[source=org.springframework.boot.SpringApplication@4f203f45]
+MyApplicationRunListener................starting
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent[source=org.springframework.boot.SpringApplication@4f203f45]
+MyApplicationRunListener................environmentPrepared
+MyApplicationContextInitializer..............initialize
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationContextInitializedEvent[source=org.springframework.boot.SpringApplication@4f203f45]
+MyApplicationRunListener................contextPrepared
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationPreparedEvent[source=org.springframework.boot.SpringApplication@4f203f45]
+MyApplicationRunListener................contextLoaded
+
+失败：
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationFailedEvent[source=org.springframework.boot.SpringApplication@4f203f45]
+MyApplicationRunListener................failed
+
+成功：
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.web.servlet.context.ServletWebServerInitializedEvent[source=org.springframework.boot.web.embedded.tomcat.TomcatWebServer@1fa882a9]
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.context.event.ContextRefreshedEvent[source=org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@750432cb, started on Mon Sep 11 16:30:01 CST 2023]
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationStartedEvent[source=org.springframework.boot.SpringApplication@793ce725]
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.availability.AvailabilityChangeEvent[source=org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@750432cb, started on Mon Sep 11 16:30:01 CST 2023]
+MyApplicationRunListener................started
+MyApplicationRunner......................run
+MyCommandLineRunner...................run
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.context.event.ApplicationReadyEvent[source=org.springframework.boot.SpringApplication@793ce725]
+MyApplicationListener..................onApplicationEvent……………… 事件到达org.springframework.boot.availability.AvailabilityChangeEvent[source=org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@750432cb, started on Mon Sep 11 16:30:01 CST 2023]
+MyApplicationRunListener................ready
+
+
+
+
+项目启动：
+
+// springboot 事件，启动时机：项目启动且在任何处理前。（除了注册监听器和初始化器）
+ApplicationStartingEvent
+
+// ApplicationRunListener ，可感知全阶段变化
+MyApplicationRunListener................starting
+
+// springboot 事件，启动时机：上下文创造之前，且使用到 环境 时
+ApplicationEnvironmentPreparedEvent
+
+MyApplicationRunListener................environmentPrepared
+
+MyApplicationContextInitializer..............initialize
+
+// springboot 事件，启动时机：上下文已经准备完成，且上下文已经初始化，但在加载任何bean定义之前
+ApplicationContextInitializedEvent
+
+MyApplicationRunListener................contextPrepared
+
+// springboot 事件，启动时机：bean定义完全加载之后，refresh() 调用之前
+ApplicationPreparedEvent
+
+MyApplicationRunListener................contextLoaded
+
+失败：
+
+// springboot 事件，启动时机：应用启动中出现异常
+ApplicationFailedEvent
+
+MyApplicationRunListener................failed
+
+成功：
+
+ServletWebServerInitializedEvent
+
+// spring 上下文更新事件
+ContextRefreshedEvent
+
+// springboot 事件，启动时机：refresh() 调用之后，任何 application 和 command-line runners 之前
+ApplicationStartedEvent
+
+// springboot 事件，启动时机：An AvailabilityChangeEvent is sent right after with LivenessState.CORRECT to indicate that the application is considered as live.
+AvailabilityChangeEvent
+
+MyApplicationRunListener................started
+
+MyApplicationRunner......................run
+
+MyCommandLineRunner...................run
+
+// springboot 事件：启动时机：任何 application 和 command-line runners 调用完成
+ApplicationReadyEvent
+
+// springboot 事件：启动时机：An AvailabilityChangeEvent is sent right after with ReadinessState.ACCEPTING_TRAFFIC to indicate that the application is ready to service requests.
+AvailabilityChangeEvent
+
+MyApplicationRunListener................ready
+
+接受请求：
+
+// spring 请求处理事件，请求结束 触发该事件
+ServletRequestHandledEvent
